@@ -1,0 +1,5 @@
+server.port: 4040
+polygon:
+  websockets:
+    forex:
+      url: wss://socket.polygon.io/forex
