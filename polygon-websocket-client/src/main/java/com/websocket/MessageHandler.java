@@ -1,8 +1,11 @@
 package com.websocket;
 
 
+import com.websocket.model.AuthenticationEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -13,6 +16,11 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class MessageHandler extends TextWebSocketHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(MessageHandler.class);
+
+    boolean authFlag;
+
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -29,6 +37,10 @@ public class MessageHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) {
         LOG.info("Message received [payload={}]", message.getPayload());
+        if (!authFlag) {
+            applicationEventPublisher.publishEvent(new AuthenticationEvent(session));
+            authFlag = true;
+        }
     }
 
 }

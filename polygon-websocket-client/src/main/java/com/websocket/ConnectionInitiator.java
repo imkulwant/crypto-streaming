@@ -21,6 +21,6 @@ public class ConnectionInitiator {
 
     @PostConstruct
     public void initiateConnections() {
-        webSocketConnector.connect(forexWebSocketUrl);
+        //webSocketConnector.connect(forexWebSocketUrl);
     }
 }

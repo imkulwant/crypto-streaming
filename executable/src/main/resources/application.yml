@@ -5,7 +5,22 @@ server:
     max-http-post-size: 0 #Maximum size in bytes of the HTTP post or put content.
     selectors: #Number of selector threads to use.
 
+logging.level:
+  org.springframework.web: DEBUG
+
 polygon:
   websockets:
     forex:
-      url: wss://socket.polygon.io/forex
+      url: wss://socket.polygon.io/crypto
+
+coingecko:
+  base-url: https://api.coingecko.com/api/v3
+
+webclient:
+  max-in-memory-size: 16777216
+
+httpclient:
+  connect-time-out: 5000
+  response-time-out: 5000
+  read-time-out: 5000
+  write-time-out: 5000

@@ -4,8 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.WebSocketConnectionManager;
+
+import java.io.IOException;
 
 @Service
 public class WebSocketConnector {
@@ -27,7 +30,6 @@ public class WebSocketConnector {
             connectionManager.start();
         } catch (Exception ex) {
             LOG.info("Exception occurred while making WebSocket connection [errorMessage={}]", ex.getMessage(), ex);
-            throw ex;
         }
     }
 
