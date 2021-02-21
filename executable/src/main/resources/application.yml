@@ -1,4 +1,10 @@
-server.port: 4040
+server:
+  port: 4040
+  jetty:
+    acceptors: #Number of acceptor threads to use.
+    max-http-post-size: 0 #Maximum size in bytes of the HTTP post or put content.
+    selectors: #Number of selector threads to use.
+
 polygon:
   websockets:
     forex:
