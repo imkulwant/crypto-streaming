@@ -13,8 +13,9 @@
 
     <modules>
         <module>executable</module>
-        <module>polygon-websocket-client</module>
+        <module>websocket-server</module>
         <module>data-collector</module>
+        <module>websocket-client</module>
     </modules>
 
     <parent>

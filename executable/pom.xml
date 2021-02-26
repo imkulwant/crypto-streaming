@@ -18,13 +18,14 @@
     <dependencies>
         <dependency>
             <groupId>com</groupId>
-            <artifactId>polygon-websocket-client</artifactId>
+            <artifactId>data-collector</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com</groupId>
-            <artifactId>data-collector</artifactId>
+            <artifactId>websocket-server</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

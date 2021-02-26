@@ -1,4 +1,4 @@
-package com.websocket.config;
+package com.websocket.client;
 
 import org.eclipse.jetty.websocket.api.WebSocketPolicy;
 import org.eclipse.jetty.websocket.common.scopes.SimpleContainerScope;
@@ -11,8 +11,6 @@ import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-@Configuration
-@ComponentScan("com.websocket")
 public class WebSocketClientConfig {
 
     @Bean
