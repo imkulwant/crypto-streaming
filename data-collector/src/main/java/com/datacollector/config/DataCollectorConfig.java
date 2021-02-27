@@ -1,5 +1,6 @@
 package com.datacollector.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -54,6 +55,11 @@ public class DataCollectorConfig {
                 .doOnConnected(connection ->
                         connection.addHandlerLast(new ReadTimeoutHandler(readTimeOut, TimeUnit.MILLISECONDS))
                                 .addHandlerLast(new WriteTimeoutHandler(writeTimeOut, TimeUnit.MILLISECONDS)));
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
 }

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriBuilder;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 
@@ -16,9 +14,9 @@ import java.time.Duration;
 import java.util.Map;
 
 @Service
-public class DataCollectorService {
+public class CoingeckoApiService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DataCollectorService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CoingeckoApiService.class);
 
     @Value("${coingecko.base-url}")
     private String coingeckoBaseUrl;
@@ -26,7 +24,7 @@ public class DataCollectorService {
     private final WebClient webClient;
 
     @Autowired
-    public DataCollectorService(WebClient webClient) {
+    public CoingeckoApiService(WebClient webClient) {
         this.webClient = webClient;
     }
 
