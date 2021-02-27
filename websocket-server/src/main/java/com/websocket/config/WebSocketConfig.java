@@ -17,7 +17,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/crypto-currencies").setAllowedOrigins("*").addInterceptors(new HttpHandshakeInterceptor());
+        registry.addEndpoint("/crypto-currencies")
+                .setHandshakeHandler(new WebSocketHandshakeHandler())
+                .setAllowedOrigins("*");
     }
 
     @Override

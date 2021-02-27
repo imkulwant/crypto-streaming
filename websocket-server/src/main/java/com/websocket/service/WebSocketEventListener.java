@@ -14,13 +14,11 @@ public class WebSocketEventListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebSocketEventListener.class);
 
-    private final ValidationService validationService;
-    private final ConnectionRepository connectionRepository;
+    private final SubscriptionRequestService subscriptionRequestService;
 
     @Autowired
-    public WebSocketEventListener(ValidationService validationService, ConnectionRepository connectionRepository) {
-        this.validationService = validationService;
-        this.connectionRepository = connectionRepository;
+    public WebSocketEventListener(SubscriptionRequestService subscriptionRequestService) {
+        this.subscriptionRequestService = subscriptionRequestService;
     }
 
 
@@ -29,11 +27,9 @@ public class WebSocketEventListener {
 
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(sessionSubscribeEvent.getMessage());
 
-        String sessionId = headerAccessor.getSessionAttributes().get("sessionId").toString();
-        String destination = headerAccessor.getDestination();
+        String sessionId = headerAccessor.getSessionId();
 
-        validationService.validateRequestedCurrency(destination);
-        connectionRepository.addActiveSubscriptions(sessionId, destination);
+        subscriptionRequestService.processSubscriptionRequest(sessionSubscribeEvent);
 
         LOG.info("Session connected [sessionId={}]", sessionId);
     }
@@ -43,9 +39,9 @@ public class WebSocketEventListener {
 
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(sessionDisconnectEvent.getMessage());
 
-        String sessionId = headerAccessor.getSessionAttributes().get("sessionId").toString();
+        String sessionId = headerAccessor.getSessionId();
 
-        connectionRepository.removeActiveSubscriptions(sessionId);
+        subscriptionRequestService.removeActiveSubscriptions(sessionId);
 
         LOG.info("Session disconnected [sessionId={}]", sessionId);
     }
