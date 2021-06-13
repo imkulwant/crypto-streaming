@@ -24,3 +24,9 @@ httpclient:
   response-time-out: 5000
   read-time-out: 5000
   write-time-out: 5000
+
+spring.thymeleaf:
+  cache: false
+  enabled: true
+  prefix: 'classpath:/templates/'
+  suffix: .html
